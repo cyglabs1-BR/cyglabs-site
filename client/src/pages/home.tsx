@@ -5,8 +5,12 @@ import CategorySidebar from "@/components/category-sidebar";
 import ProductCatalog from "@/components/product-catalog";
 import SubscriptionCta from "@/components/subscription-cta";
 import InfoSection from "@/components/info-section";
+import ShoppingCartComponent from "@/components/shopping-cart";
+import { useCart } from "@/hooks/use-cart";
 
 export default function Home() {
+  const { isCartOpen, closeCart, sessionId } = useCart();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -23,6 +27,13 @@ export default function Home() {
       </div>
       
       <Footer />
+      
+      {/* Shopping Cart */}
+      <ShoppingCartComponent 
+        isOpen={isCartOpen}
+        onClose={closeCart}
+        sessionId={sessionId}
+      />
     </div>
   );
 }

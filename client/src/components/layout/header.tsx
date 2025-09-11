@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, Phone } from "lucide-react";
+import { Search, Menu, Phone, ShoppingCart } from "lucide-react";
 import { Link } from "wouter";
+import { useCart } from "@/hooks/use-cart";
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openCart } = useCart();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,12 +24,12 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link href="/">
-              <a className="flex items-center space-x-2" data-testid="link-home">
+              <div className="flex items-center space-x-2" data-testid="link-home">
                 <h1 className="text-2xl font-bold text-primary">CYGLABS 3D</h1>
                 <span className="text-sm text-muted-foreground hidden md:block">
                   Impressões 3D Premium
                 </span>
-              </a>
+              </div>
             </Link>
           </div>
           
@@ -46,25 +48,40 @@ export default function Header() {
             </form>
           </div>
           
-          {/* Contact Info */}
-          <div className="hidden lg:flex items-center space-x-4 text-sm">
-            <span className="text-muted-foreground">Contato:</span>
-            <a 
-              href="tel:11920566022" 
-              className="text-primary hover:underline flex items-center"
-              data-testid="link-phone-1"
+          {/* Actions */}
+          <div className="flex items-center space-x-4">
+            {/* Cart Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={openCart}
+              className="flex items-center space-x-2"
+              data-testid="button-open-cart"
             >
-              <Phone className="h-4 w-4 mr-1" />
-              (11) 92056-6022
-            </a>
-            <a 
-              href="tel:21966535862" 
-              className="text-primary hover:underline flex items-center"
-              data-testid="link-phone-2"
-            >
-              <Phone className="h-4 w-4 mr-1" />
-              (21) 96653-5862
-            </a>
+              <ShoppingCart className="h-4 w-4" />
+              <span className="hidden md:inline">Carrinho</span>
+            </Button>
+            
+            {/* Contact Info */}
+            <div className="hidden lg:flex items-center space-x-4 text-sm">
+              <span className="text-muted-foreground">Contato:</span>
+              <a 
+                href="tel:11920566022" 
+                className="text-primary hover:underline flex items-center"
+                data-testid="link-phone-1"
+              >
+                <Phone className="h-4 w-4 mr-1" />
+                (11) 92056-6022
+              </a>
+              <a 
+                href="tel:21966535862" 
+                className="text-primary hover:underline flex items-center"
+                data-testid="link-phone-2"
+              >
+                <Phone className="h-4 w-4 mr-1" />
+                (21) 96653-5862
+              </a>
+            </div>
           </div>
           
           {/* Mobile Menu Button */}

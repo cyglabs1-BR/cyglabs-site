@@ -19,22 +19,22 @@ export default function CategorySidebar() {
         </h3>
         <nav className="space-y-2">
           <Link href="/">
-            <a className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+            <div className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
               location === "/" ? "bg-muted" : "hover:bg-muted"
             }`} data-testid="link-category-all">
               <i className="fas fa-th-large text-secondary"></i>
               <span>Todos os Produtos</span>
-            </a>
+            </div>
           </Link>
           
           {categories?.map((category) => (
             <Link key={category.id} href={`/?category=${category.slug}`}>
-              <a className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+              <div className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
                 location.includes(`category=${category.slug}`) ? "bg-muted" : "hover:bg-muted"
               }`} data-testid={`link-category-${category.slug}`}>
                 <i className={`${category.icon} text-secondary`}></i>
                 <span>{category.name}</span>
-              </a>
+              </div>
             </Link>
           ))}
         </nav>

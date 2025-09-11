@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import StlViewer from "./stl-viewer";
+import { useCart } from "@/hooks/use-cart";
 import type { Product } from "@shared/schema";
 
 interface ProductCatalogProps {
@@ -18,6 +19,7 @@ export default function ProductCatalog({
   featuredOnly = false 
 }: ProductCatalogProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const { addToCart, isAddingToCart } = useCart();
 
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products", { category: categorySlug, search: searchQuery, featured: featuredOnly }],
@@ -77,11 +79,12 @@ export default function ProductCatalog({
                   size="sm"
                   onClick={(e) => {
                     e.stopPropagation();
-                    // TODO: Add to cart functionality
+                    addToCart(product.id);
                   }}
+                  disabled={isAddingToCart}
                   data-testid={`button-buy-${product.id}`}
                 >
-                  Comprar
+                  {isAddingToCart ? "Adicionando..." : "Adicionar ao Carrinho"}
                 </Button>
               </CardContent>
             </Card>
@@ -118,8 +121,12 @@ export default function ProductCatalog({
             <p className="text-muted-foreground mb-4">{selectedProduct.description}</p>
             <div className="flex justify-between items-center">
               <span className="text-2xl font-bold text-primary">R$ {selectedProduct.price}</span>
-              <Button data-testid="button-buy-from-viewer">
-                Comprar Agora
+              <Button 
+                onClick={() => addToCart(selectedProduct.id)}
+                disabled={isAddingToCart}
+                data-testid="button-buy-from-viewer"
+              >
+                {isAddingToCart ? "Adicionando..." : "Adicionar ao Carrinho"}
               </Button>
             </div>
           </div>

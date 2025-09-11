@@ -8,7 +8,7 @@ import { useCart } from "@/hooks/use-cart";
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { openCart } = useCart();
+  const { openCart, sessionId } = useCart();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function Header() {
               <div className="flex items-center space-x-2" data-testid="link-home">
                 <h1 className="text-2xl font-bold text-primary">CYGLABS 3D</h1>
                 <span className="text-sm text-muted-foreground hidden md:block">
-                  Impressões 3D Premium
+                  IMPRIMINDO A SUA IMAGINAÇÃO
                 </span>
               </div>
             </Link>
@@ -55,7 +55,7 @@ export default function Header() {
               variant="outline"
               size="sm"
               onClick={openCart}
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-2 hover:bg-accent hover:text-accent-foreground transition-colors relative"
               data-testid="button-open-cart"
             >
               <ShoppingCart className="h-4 w-4" />

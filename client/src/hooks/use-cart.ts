@@ -30,8 +30,8 @@ export function useCart() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/cart", sessionId] });
       toast({
-        title: "Item adicionado",
-        description: "O produto foi adicionado ao carrinho com sucesso!",
+        title: "Produto adicionado ao carrinho",
+        description: "Item adicionado com sucesso!",
       });
     },
     onError: () => {

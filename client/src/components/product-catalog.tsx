@@ -21,8 +21,25 @@ export default function ProductCatalog({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addToCart, isAddingToCart } = useCart();
 
+  // Construir a query string manualmente para evitar [object Object]
+  const buildQueryString = () => {
+    const params = new URLSearchParams();
+    if (categorySlug) params.append('category', categorySlug);
+    if (searchQuery) params.append('search', searchQuery);
+    if (featuredOnly) params.append('featured', 'true');
+    const queryString = params.toString();
+    return queryString ? `?${queryString}` : '';
+  };
+
   const { data: products, isLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products", { category: categorySlug, search: searchQuery, featured: featuredOnly }],
+    queryKey: ["/api/products", categorySlug, searchQuery, featuredOnly],
+    queryFn: async () => {
+      const response = await fetch(`/api/products${buildQueryString()}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch products');
+      }
+      return response.json();
+    },
   });
 
   if (isLoading) {
@@ -37,7 +54,7 @@ export default function ProductCatalog({
   }
 
   return (
-    <section className="container mx-auto px-4 py-12">
+    <section id="catalogo" className="container mx-auto px-4 py-12">
       <h2 className="text-3xl font-bold text-center mb-8" data-testid="catalog-title">
         {featuredOnly ? "Figuras em Destaque" : "Catálogo de Produtos"}
       </h2>
@@ -47,7 +64,7 @@ export default function ProductCatalog({
           {products.map((product) => (
             <Card 
               key={product.id} 
-              className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+              className="overflow-hidden hover:shadow-xl transition-shadow cursor-pointer hover-lift"
               onClick={() => setSelectedProduct(product)}
               data-testid={`card-product-${product.id}`}
             >
@@ -67,15 +84,16 @@ export default function ProductCatalog({
                   {product.description}
                 </p>
                 <div className="flex justify-between items-center mb-3">
-                  <span className="text-primary font-bold" data-testid={`text-product-price-${product.id}`}>
+                  <span className="text-secondary font-bold text-lg" data-testid={`text-product-price-${product.id}`}>
                     R$ {product.price}
                   </span>
-                  <Badge variant={product.printType === 'resin' ? 'default' : 'secondary'}>
+                  <Badge variant={product.printType === 'resin' ? 'default' : 'outline'} className="text-accent">
                     {product.printType === 'resin' ? 'Resina' : 'Filamento'}
                   </Badge>
                 </div>
                 <Button 
-                  className="w-full" 
+                  variant="secondary"
+                  className="w-full hover-lift" 
                   size="sm"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -102,8 +120,8 @@ export default function ProductCatalog({
       )}
 
       {/* 3D Viewer Modal */}
-      {selectedProduct && selectedProduct.stlFileUrl && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" data-testid="product-viewer">
           <div className="bg-card rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-2xl font-bold">{selectedProduct.name}</h3>
@@ -116,12 +134,20 @@ export default function ProductCatalog({
               </Button>
             </div>
             <div className="h-96 mb-4">
-              <StlViewer stlUrl={selectedProduct.stlFileUrl} />
+              {selectedProduct.stlFileUrl ? (
+                <StlViewer stlUrl={selectedProduct.stlFileUrl} />
+              ) : (
+                <div className="h-full bg-muted rounded-lg flex items-center justify-center">
+                  <p className="text-muted-foreground">Visualização 3D em breve</p>
+                </div>
+              )}
             </div>
             <p className="text-muted-foreground mb-4">{selectedProduct.description}</p>
             <div className="flex justify-between items-center">
-              <span className="text-2xl font-bold text-primary">R$ {selectedProduct.price}</span>
+              <span className="text-2xl font-bold text-secondary">R$ {selectedProduct.price}</span>
               <Button 
+                variant="secondary"
+                className="hover-lift"
                 onClick={() => addToCart(selectedProduct.id)}
                 disabled={isAddingToCart}
                 data-testid="button-buy-from-viewer"

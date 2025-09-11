@@ -14,7 +14,8 @@ export default function SubscriptionCta() {
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
           <Link href="/premium">
             <Button 
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold py-4 px-8 rounded-lg text-lg transition-colors"
+              variant="secondary"
+              className="font-bold py-4 px-8 rounded-lg text-lg hover-lift"
               data-testid="button-monthly-plan"
             >
               Plano Mensal - R$ 29,90
@@ -22,7 +23,8 @@ export default function SubscriptionCta() {
           </Link>
           <Link href="/premium">
             <Button 
-              className="bg-card text-primary hover:bg-muted font-bold py-4 px-8 rounded-lg text-lg transition-colors"
+              variant="outline"
+              className="bg-card text-primary hover:bg-muted font-bold py-4 px-8 rounded-lg text-lg hover-lift border-white"
               data-testid="button-yearly-plan"
             >
               Plano Anual - R$ 299,90

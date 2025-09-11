@@ -1,81 +1,82 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-
-const slides = [
-  {
-    id: 1,
-    title: "Especial Dia das Crianças! 🎨",
-    subtitle: "Assine agora e ganhe 4 miniaturas para pintar!",
-    buttonText: "Assinar Agora",
-    bgClass: "bg-gradient-to-r from-primary to-accent",
-    duration: 5000, // 5 segundos
-  },
-  {
-    id: 2,
-    title: "Coleção Halloween 🎃",
-    subtitle: "Figuras assombradas em alta qualidade",
-    buttonText: "Ver Coleção",
-    bgClass: "bg-gradient-to-r from-orange-600 to-purple-800",
-    duration: 5000,
-  },
-  {
-    id: 3,
-    title: "Aprenda a Pintar! 🎨",
-    subtitle: "Tutoriais completos para suas figuras 3D",
-    buttonText: "Ver Tutoriais",
-    bgClass: "bg-gradient-to-r from-green-600 to-blue-600",
-    duration: 5000,
-  },
-];
+import { Link } from "wouter";
 
 export default function HeroCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, slides[currentSlide].duration);
-
-    return () => clearInterval(timer);
-  }, [currentSlide]);
-
-  const currentSlideData = slides[currentSlide];
-
   return (
-    <section className="relative h-96 overflow-hidden">
-      <div 
-        className={`absolute inset-0 ${currentSlideData.bgClass} flex items-center justify-center text-center text-primary-foreground transition-all duration-1000`}
-      >
+    <section className="relative min-h-screen hero-bg">
+      <div className="absolute inset-0 hero-gradient"></div>
+      
+      <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-6xl font-bold mb-4" data-testid="carousel-title">
-            {currentSlideData.title}
-          </h2>
-          <p className="text-xl md:text-2xl mb-6" data-testid="carousel-subtitle">
-            {currentSlideData.subtitle}
-          </p>
-          <Button 
-            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold py-3 px-8 rounded-lg text-lg transition-colors"
-            data-testid={`button-carousel-${currentSlideData.id}`}
-          >
-            {currentSlideData.buttonText}
-          </Button>
-        </div>
-      </div>
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 items-center min-h-screen">
+            {/* Imagem/Visual - 60% */}
+            <div className="lg:col-span-6 flex justify-center items-center order-2 lg:order-1">
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                  alt="Impressão 3D de qualidade"
+                  className="rounded-lg shadow-2xl max-w-full h-auto"
+                  data-testid="hero-image"
+                />
+                <div className="absolute -bottom-4 -right-4 bg-secondary text-secondary-foreground px-6 py-3 rounded-lg shadow-lg">
+                  <p className="font-bold text-lg">Qualidade Premium</p>
+                </div>
+              </div>
+            </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentSlide 
-                ? 'bg-primary-foreground' 
-                : 'bg-primary-foreground/50'
-            }`}
-            data-testid={`carousel-indicator-${index}`}
-          />
-        ))}
+            {/* Conteúdo - 30% */}
+            <div className="lg:col-span-4 text-center lg:text-left text-white order-1 lg:order-2">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-glow" data-testid="hero-title">
+                CYGLABS IMPRIMINDO A SUA{" "}
+                <span className="text-secondary">IMAGINAÇÃO</span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl mb-8 text-gray-200" data-testid="hero-subtitle">
+                CYGLABS 3D - Transformamos suas ideias em realidade com impressão 3D de alta qualidade
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#catalogo">
+                  <Button 
+                    variant="secondary"
+                    size="lg"
+                    className="text-lg px-8 py-4 hover-lift"
+                    data-testid="button-hero-cta"
+                  >
+                    Explorar Catálogo
+                  </Button>
+                </a>
+                
+                <Link href="/premium">
+                  <Button 
+                    variant="outline"
+                    size="lg"
+                    className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary hover-lift"
+                    data-testid="button-hero-premium"
+                  >
+                    Assinar Premium
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="mt-12 grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <p className="text-3xl font-bold text-accent">500+</p>
+                  <p className="text-sm text-gray-300">Modelos</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-accent">24h</p>
+                  <p className="text-sm text-gray-300">Entrega</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-accent">100%</p>
+                  <p className="text-sm text-gray-300">Qualidade</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

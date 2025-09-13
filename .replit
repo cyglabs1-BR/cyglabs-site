@@ -4,6 +4,7 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
+packages = ["vim"]
 
 [deployment]
 deploymentTarget = "autoscale"
@@ -44,7 +45,3 @@ externalPort = 80
 [[ports]]
 localPort = 33391
 externalPort = 3000
-
-[[ports]]
-localPort = 46091
-externalPort = 3001

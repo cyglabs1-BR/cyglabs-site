@@ -1,0 +1,41 @@
+12:53:40 AM: build-image version: 4a8ac839785702e700079d30b165ce05e5b74e43 (noble)
+12:53:40 AM: buildbot version: ea492e86968abb8ab1c6f00e7c4b5466855f8c43
+12:53:40 AM: Fetching cached dependencies
+12:53:40 AM: Starting to download cache of 347.8MB (Last modified: 2025-09-13 03:40:46 +0000 UTC)
+12:53:41 AM: Finished downloading cache in 1.001s
+12:53:41 AM: Starting to extract cache
+12:53:49 AM: Finished extracting cache in 7.996s
+12:53:49 AM: Finished fetching cache in 9.059s
+12:53:49 AM: Starting to prepare the repo for build
+12:53:50 AM: Preparing Git Reference refs/heads/main
+12:53:51 AM: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+12:53:51 AM: Custom build command detected. Proceeding with the specified command: 'rm -rf node_modules package-lock.json && npm cache clean --force && npm install --force --legacy-peer-deps && npm run build'
+12:53:51 AM: Starting to install dependencies
+12:53:51 AM: Started restoring cached python cache
+12:53:52 AM: Finished restoring cached python cache
+12:53:52 AM: Started restoring cached ruby cache
+12:53:52 AM: Finished restoring cached ruby cache
+12:53:53 AM: Started restoring cached go cache
+12:53:54 AM: Finished restoring cached go cache
+12:53:54 AM: Started restoring cached Node.js version
+12:53:55 AM: Finished restoring cached Node.js version
+12:53:56 AM: v18.20.8 is already installed.
+12:53:56 AM: Now using node v18.20.8 (npm v10.8.2)
+12:53:56 AM: Enabling Node.js Corepack
+12:53:56 AM: Started restoring cached build plugins
+12:53:56 AM: Finished restoring cached build plugins
+12:53:56 AM: Started restoring cached corepack dependencies
+12:53:56 AM: Finished restoring cached corepack dependencies
+12:53:56 AM: No npm workspaces detected
+12:53:56 AM: Started restoring cached node modules
+12:53:56 AM: Finished restoring cached node modules
+12:53:56 AM: Installing npm packages using npm version 10.8.2
+12:53:56 AM: npm warn using --force Recommended protections disabled.
+12:53:59 AM: Failed during stage 'Install dependencies': dependency_installation script returned non-zero exit code: 1
+12:53:59 AM: npm error code ETARGET
+12:53:59 AM: npm error notarget No matching version found for @replit/vite-plugin-cartographer@^1.1.2.
+12:53:59 AM: npm error notarget In most cases you or one of your dependencies are requesting
+12:53:59 AM: npm error notarget a package version that doesn't exist.
+npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2025-09-13T03_53_56_744Z-debug-0.log
+12:53:59 AM: Error during npm install
+12:53:59 AM: Failing build: Failed to install dependencies

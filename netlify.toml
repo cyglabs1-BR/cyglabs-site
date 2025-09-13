@@ -1,11 +1,11 @@
 [build]
-  command = "node -e \"const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));if(p.devDependencies){delete p.devDependencies['@replit/vite-plugin-cartographer'];delete p.devDependencies['@replit/vite-plugin-runtime-error-modal'];}fs.writeFileSync('package.json',JSON.stringify(p,null,2));\" && rm -rf node_modules package-lock.json && npm cache clean --force && npm install --force --legacy-peer-deps && node -e \"const fs=require('fs'),path=require('path');function mk(n,v,c){const d=path.join('node_modules',...n.split('/'));fs.mkdirSync(d,{recursive:true});fs.writeFileSync(path.join(d,'package.json'),JSON.stringify({name:n,version:v,type:'module',exports:'./index.js'},null,2));fs.writeFileSync(path.join(d,'index.js'),c);}mk('@replit/vite-plugin-runtime-error-modal','1.0.0','export default function runtimeErrorOverlay(){return {name:\\\"noop-runtime-error-overlay\\\"}}');mk('@replit/vite-plugin-cartographer','1.1.2','export function cartographer(){return {name:\\\"noop-cartographer\\\"}}');\" && npm run build"
+  command = "node scripts/netlify-build.mjs"
   publish = "dist/public"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
-  NPM_FLAGS = "--legacy-peer-deps --force"
+  NPM_FLAGS = "--omit=dev --legacy-peer-deps --force"
 
 [functions]
   node_bundler = "esbuild"

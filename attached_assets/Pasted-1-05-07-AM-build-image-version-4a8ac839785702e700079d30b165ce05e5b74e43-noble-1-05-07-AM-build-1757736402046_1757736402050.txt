@@ -1,0 +1,41 @@
+1:05:07 AM: build-image version: 4a8ac839785702e700079d30b165ce05e5b74e43 (noble)
+1:05:07 AM: buildbot version: ea492e86968abb8ab1c6f00e7c4b5466855f8c43
+1:05:07 AM: Fetching cached dependencies
+1:05:07 AM: Starting to download cache of 347.8MB (Last modified: 2025-09-13 03:40:46 +0000 UTC)
+1:05:08 AM: Finished downloading cache in 744ms
+1:05:08 AM: Starting to extract cache
+1:05:14 AM: Finished extracting cache in 6.194s
+1:05:14 AM: Finished fetching cache in 6.994s
+1:05:14 AM: Starting to prepare the repo for build
+1:05:14 AM: Preparing Git Reference refs/heads/main
+1:05:15 AM: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+1:05:15 AM: Custom build command detected. Proceeding with the specified command: 'node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));if(p.devDependencies){delete p.devDependencies['@replit/vite-plugin-cartographer'];delete p.devDependencies['@replit/vite-plugin-runtime-error-modal'];}fs.writeFileSync('package.json',JSON.stringify(p,null,2));" && rm -rf node_modules package-lock.json && npm cache clean --force && npm install --force --legacy-peer-deps && node -e "const fs=require('fs'),path=require('path');function mk(n,v,c){const d=path.join('node_modules',...n.split('/'));fs.mkdirSync(d,{recursive:true});fs.writeFileSync(path.join(d,'package.json'),JSON.stringify({name:n,version:v,type:'module',exports:'./index.js'},null,2));fs.writeFileSync(path.join(d,'index.js'),c);}mk('@replit/vite-plugin-runtime-error-modal','1.0.0','export default function runtimeErrorOverlay(){return {name:\"noop-runtime-error-overlay\"}}');mk('@replit/vite-plugin-cartographer','1.1.2','export function cartographer(){return {name:\"noop-cartographer\"}}');" && npm run build'
+1:05:16 AM: Starting to install dependencies
+1:05:16 AM: Started restoring cached python cache
+1:05:16 AM: Finished restoring cached python cache
+1:05:16 AM: Started restoring cached ruby cache
+1:05:17 AM: Finished restoring cached ruby cache
+1:05:17 AM: Started restoring cached go cache
+1:05:18 AM: Finished restoring cached go cache
+1:05:18 AM: Started restoring cached Node.js version
+1:05:18 AM: Finished restoring cached Node.js version
+1:05:19 AM: v18.20.8 is already installed.
+1:05:19 AM: Now using node v18.20.8 (npm v10.8.2)
+1:05:19 AM: Enabling Node.js Corepack
+1:05:19 AM: Started restoring cached build plugins
+1:05:19 AM: Finished restoring cached build plugins
+1:05:19 AM: Started restoring cached corepack dependencies
+1:05:19 AM: Finished restoring cached corepack dependencies
+1:05:19 AM: No npm workspaces detected
+1:05:19 AM: Started restoring cached node modules
+1:05:19 AM: Finished restoring cached node modules
+1:05:19 AM: Installing npm packages using npm version 10.8.2
+1:05:19 AM: npm warn using --force Recommended protections disabled.
+1:05:21 AM: Failed during stage 'Install dependencies': dependency_installation script returned non-zero exit code: 1
+1:05:21 AM: npm error code ETARGET
+1:05:21 AM: npm error notarget No matching version found for @replit/vite-plugin-cartographer@^1.1.2.
+1:05:21 AM: npm error notarget In most cases you or one of your dependencies are requesting
+1:05:21 AM: npm error notarget a package version that doesn't exist.
+npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2025-09-13T04_05_19_661Z-debug-0.log
+1:05:21 AM: Error during npm install
+1:05:21 AM: Failing build: Failed to install dependencies

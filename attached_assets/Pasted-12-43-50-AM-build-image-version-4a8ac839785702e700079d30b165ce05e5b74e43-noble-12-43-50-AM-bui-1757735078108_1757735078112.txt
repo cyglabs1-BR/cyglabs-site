@@ -1,0 +1,55 @@
+12:43:50 AM: build-image version: 4a8ac839785702e700079d30b165ce05e5b74e43 (noble)
+12:43:50 AM: buildbot version: ea492e86968abb8ab1c6f00e7c4b5466855f8c43
+12:43:50 AM: Fetching cached dependencies
+12:43:51 AM: Starting to download cache of 347.8MB (Last modified: 2025-09-13 03:40:46 +0000 UTC)
+12:43:52 AM: Finished downloading cache in 1.054s
+12:43:52 AM: Starting to extract cache
+12:43:56 AM: Finished extracting cache in 4.368s
+12:43:56 AM: Finished fetching cache in 5.488s
+12:43:56 AM: Starting to prepare the repo for build
+12:43:56 AM: Preparing Git Reference refs/heads/main
+12:43:57 AM: Custom publish path detected. Proceeding with the specified path: 'dist/public'
+12:43:58 AM: Starting to install dependencies
+12:43:58 AM: Started restoring cached python cache
+12:43:58 AM: Finished restoring cached python cache
+12:43:58 AM: Started restoring cached ruby cache
+12:43:59 AM: Finished restoring cached ruby cache
+12:43:59 AM: Started restoring cached go cache
+12:44:00 AM: Finished restoring cached go cache
+12:44:00 AM: Started restoring cached Node.js version
+12:44:01 AM: Finished restoring cached Node.js version
+12:44:01 AM: v18.20.8 is already installed.
+12:44:01 AM: Now using node v18.20.8 (npm v10.8.2)
+12:44:01 AM: Enabling Node.js Corepack
+12:44:01 AM: Started restoring cached build plugins
+12:44:01 AM: Finished restoring cached build plugins
+12:44:01 AM: Started restoring cached corepack dependencies
+12:44:01 AM: Finished restoring cached corepack dependencies
+12:44:01 AM: No npm workspaces detected
+12:44:01 AM: Started restoring cached node modules
+12:44:01 AM: Finished restoring cached node modules
+12:44:01 AM: Installing npm packages using npm version 10.8.2
+12:44:03 AM: Failed during stage 'Install dependencies': dependency_installation script returned non-zero exit code: 1
+12:44:03 AM: npm error code ERESOLVE
+12:44:03 AM: npm error ERESOLVE unable to resolve dependency tree
+12:44:03 AM: npm error
+12:44:03 AM: npm error While resolving: rest-express@1.0.0
+12:44:03 AM: npm error Found: three@undefined
+12:44:03 AM: npm error node_modules/three
+12:44:03 AM: npm error   three@"^0.181.0" from the root project
+12:44:03 AM: npm error
+12:44:03 AM: npm error Could not resolve dependency:
+12:44:03 AM: npm error peer three@">=0.128.0" from three-stdlib@2.36.0
+12:44:03 AM: npm error node_modules/three-stdlib
+12:44:03 AM: npm error   three-stdlib@"^2.35.0" from the root project
+12:44:03 AM: npm error
+12:44:03 AM: npm error Fix the upstream dependency conflict, or retry
+12:44:03 AM: npm error this command with --force or --legacy-peer-deps
+12:44:03 AM: npm error to accept an incorrect (and potentially broken) dependency resolution.
+12:44:03 AM: npm error
+12:44:03 AM: npm error
+12:44:03 AM: npm error For a full report see:
+12:44:03 AM: npm error /opt/buildhome/.npm/_logs/2025-09-13T03_44_01_993Z-eresolve-report.txt
+12:44:03 AM: npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2025-09-13T03_44_01_993Z-debug-0.log
+12:44:03 AM: Error during npm install
+12:44:03 AM: Failing build: Failed to install dependencies

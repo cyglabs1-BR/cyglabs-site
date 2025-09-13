@@ -1,10 +1,11 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "rm -rf node_modules package-lock.json && npm cache clean --force && npm install --force --legacy-peer-deps && npm run build"
   publish = "dist/public"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps --force"
 
 [functions]
   node_bundler = "esbuild"
